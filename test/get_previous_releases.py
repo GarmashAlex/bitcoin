@@ -18,6 +18,7 @@ import shutil
 import subprocess
 import sys
 import hashlib
+import zipfile
 
 SHA256_SUMS = {
     "0e2819135366f150d9906e294b61dff58fd1996ebd26c2f8e979d6c0b7a79580": {"tag": "v0.14.3", "tarball": "bitcoin-0.14.3-aarch64-linux-gnu.tar.gz"},
@@ -178,7 +179,6 @@ def download_binary(tag, args) -> int:
     # Extract tarball
     if platform == "win64":
         # Handle zip files for Windows
-        import zipfile
         with zipfile.ZipFile(tarball, 'r') as zip_ref:
             zip_ref.extractall(tag)
         # Rename the directory to match expected structure
